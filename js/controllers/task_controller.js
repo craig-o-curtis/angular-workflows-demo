@@ -1,20 +1,20 @@
 (function(){
 	'use strict';
-	var app = angular.module('todo');
+	const app = angular.module('todo');
 	
 	function todoCtrl(taskResource, categoryResource){
-		var ctrl = this;
+		let ctrl = this;
 
 	
 		ctrl.tasks = taskResource.getTasks();
 		
 		ctrl.categories = categoryResource.getCategories();
 		
-		ctrl.newTask = function(){
-			if(ctrl.newTaskName === ''){
+		ctrl.newTask = () => {
+			if (ctrl.newTaskName === ''){
 				return;
 			}
-			var task = {
+			let task = {
 				name: ctrl.newTaskName
 			};
 			

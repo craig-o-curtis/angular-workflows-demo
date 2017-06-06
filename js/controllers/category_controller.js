@@ -1,14 +1,14 @@
 (function(){
 	'use strict';
-	var app = angular.module('todo');
+	const app = angular.module('todo');
 	
-	function categoryCtrl(categoryResource){
-		var ctrl = this;
+	categoryCtrl = (categoryResource) => {
+		let ctrl = this;
 
 		ctrl.categories = categoryResource.getCategories();
 		
-		ctrl.newCategory = function(){
-			if(ctrl.newCategoryName === ''){
+		ctrl.newCategory = () => {
+			if (ctrl.newCategoryName === ''){
 				return;
 			}
 			
