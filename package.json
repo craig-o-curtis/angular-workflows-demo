@@ -1,0 +1,23 @@
+{
+  "name": "angular-workflows-demo",
+  "version": "1.0.0",
+  "description": "// From Pluralsight Advanced Angular Workflows",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/craig-o-curtis/angular-workflows-demo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/craig-o-curtis/angular-workflows-demo/issues"
+  },
+  "homepage": "https://github.com/craig-o-curtis/angular-workflows-demo#readme"
+}
