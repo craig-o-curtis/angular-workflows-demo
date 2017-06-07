@@ -14,11 +14,15 @@ Goals
 // Setup
 ```
 $ npm init -y
-$ npm install --save -dev jquery@3.1.0 angular@1.5.8 angular-route@1.5.8 angular-mocks@1.5.8 // fronteend dependencies
+$ npm install --save-dev jquery@3.1.0 angular@1.5.8 angular-route@1.5.8 angular-mocks@1.5.8 // fronteend dependencies
 $ npm install --save-dev gulp
-$ npm install --save-dev gulp-load-plugins gulp-concat gulp-ugflify gulp-ngAnnotate 
+$ npm install --save-dev gulp-load-plugins gulp-concat gulp-ugflify gulp-ngAnnotate gulp-util
 $ npm install --save-dev gulp-babel babel-preset-es2015gulp-sourcemaps
-$ npm install --save-dev mocha sinon chai karma-mocha karma-sinon karma-chai karma-phantomjs-launcher phantomjs-prebuilt jshint-stylish
+$ npm install --save-dev mocha sinon chai karma-mocha karma-sinon karma-chai 
+karma-phantomjs-launcher phantomjs-prebuilt
+$ npm install --save-dev gulp-jshint jshint jshint-stylish
+$ npm install --save gulp-jshint jshint-stylish
+$ npm install --save-dev yargs
 ```
 
 // Create a Gulpfile

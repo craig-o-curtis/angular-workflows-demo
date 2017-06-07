@@ -1,22 +1,16 @@
 (function(){
 	'use strict';
-	const app = angular.module('todo');
+	var app = angular.module('todo');
 	
-	categoryResource = () => {
+	function categoryResource (){
 	
-		let categories = ['Pluralsight', 'Consulting', 'Scouts', 'Home'];
+		var categories = ['Pluralsight', 'Consulting', 'Scouts', 'Home'];
+		function getCategories(){
+			return categories;
+		}
 		
-		getCategories = () => categories;
-
-		// es5 way	
-		// return {
-		// 	getCategories: getCategories
-		// };
-
-		// es6 way
 		return {getCategories};
-			
 	}
 	
-	app.service('categoryResource', categoryResource)
+	app.service('categoryResource', categoryResource);
 }());

@@ -1,6 +1,9 @@
 // Karma configuration
 // Generated on Tue Jun 06 2017 18:52:06 GMT-0700 (MST)
 
+(function(){
+'use strict';
+
 module.exports = function(config) {
   config.set({
 
@@ -54,7 +57,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS', 'Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode
@@ -64,5 +67,6 @@ module.exports = function(config) {
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity
-  })
-}
+  });
+};
+}());

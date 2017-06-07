@@ -6,7 +6,6 @@
 	function todoCtrl(taskResource, categoryResource){
 		let ctrl = this;
 
-	
 		ctrl.tasks = taskResource.getTasks();
 		
 		ctrl.categories = categoryResource.getCategories();
@@ -27,4 +26,4 @@
 	
 	app.controller('todoCtrl', todoCtrl);
 	
-// }());
+}());

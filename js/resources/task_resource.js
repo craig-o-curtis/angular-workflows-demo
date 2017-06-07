@@ -14,8 +14,7 @@
 		
 		return {getTasks};
 			
-			
 	}
 	
-	app.service('taskResource', taskResource)
+	app.service('taskResource', taskResource);
 }());

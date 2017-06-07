@@ -1,4 +1,5 @@
 (function () {
+	'use strict';
 	var app = angular.module('todo', ['ngRoute']);
 
 	app.config(function ($routeProvider, $locationProvider, $httpProvider) {
@@ -13,5 +14,5 @@
 				controller: 'categoryCtrl as ctrl'
 			})
 			.otherwise('/tasks');
-	})
+	});
 }());
