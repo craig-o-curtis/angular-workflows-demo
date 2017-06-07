@@ -35,7 +35,27 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage', 'karma-remap-istanbul'],
+
+
+    // setup instanbul
+    remapIstanbulReporter: {
+        src: 'coverage/coverage.info',
+        reports: {
+          lcovonly: 'coverage.lcov.info',
+          html: 'coverage/html',
+          'text-summary': null
+        },
+        timeoutNotCreated: 5000,
+        timeoutNoMoreFiles: 1000
+    },
+    // write coverage.info file
+    coverageReporter: {
+        type: 'lcovonly',
+        subdir: '.',
+        dir: 'coverage/',
+        file: 'coverage.info'
+    },
 
 
     // web server port

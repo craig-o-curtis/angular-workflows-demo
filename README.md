@@ -1,6 +1,25 @@
 // From Pluralsight Advanced Angular Workflows
 ** This is AngularJS 1.5.8 **
 
+/** NOTE - test is broken - awaiting fix **/
+'No deferred tasks to be flushed'
+```
+// category.controller.spec.js
+...
+    beforeEach(inject(function(_$controller_, _$timeout_, _$q_) {
+        $timeout = _$timeout_;
+        $q = _$q_;
+        $controller = _$controller_('categoryCtrl');
+    }));
+  
+    it('should get categories from a resource', function() {
+        categoryResource.getCategories.called.should.equal(true);
+        $timeout.flush(); /**** causes error - 'No deferred tasks to be flushed' ****.
+        $controller.categories.length.should.equal(43);
+    });
+...
+```
+
 Goals  - Gulp to Automate:
 
 1. Babel - ES6 in AngularJS
@@ -19,8 +38,8 @@ $ npm install --save-dev jquery@3.1.0 angular@1.5.8 angular-route@1.5.8 angular-
 $ npm install --save-dev gulp
 $ npm install --save-dev gulp-load-plugins gulp-concat gulp-ugflify gulp-ngAnnotate gulp-util
 $ npm install --save-dev gulp-babel babel-preset-es2015gulp-sourcemaps
-$ npm install --save-dev mocha sinon chai karma-mocha karma-sinon karma-chai 
-karma-phantomjs-launcher phantomjs-prebuilt
+$ npm install --save-dev karma mocha sinon chai karma-mocha karma-sinon karma-chai 
+karma-phantomjs-launcher phantomjs-prebuilt karma-koverage
 $ npm install --save-dev gulp-jshint jshint jshint-stylish
 $ npm install --save gulp-jshint jshint-stylish
 $ npm install --save-dev yargs
@@ -98,34 +117,10 @@ $ npm install --s-dev karma
 ```
 
 
-
 // Gulp with all goodies
 
 ```
-'use strict';
-
-var gulp = require('gulp'),
-	$ = require('gulp-load-plugins')();
-
-var srcScripts = ['js/**/*.js'];
-
-gulp.task('scripts', function() {
-	gulp.src(srcScripts)
-		.pipe($.babel({
-			presets: ['es2015']
-		}))
-		.pipe($.ngAnnotate()) // auto adds $inject into angular files
-		.pipe($.sourcemaps.init()) // looks at original js structure
-		.pipe($.concat('bundle.js')) // spit out to concatenated file called bundle.js
-		.pipe($.uglify()) // minify the code
-		.pipe($.sourcemaps.write()) // write sourcemaps
-		.pipe(gulp.dest('dist/js')); // spit out to dist/js
-})
-
-gulp.task('default', ['scripts'], function() {
-	// runs scripts task
-	gulp.watch(srcScripts, ['scripts']);
-});
+/***** ADD LATER ***/
 ```
 
 
@@ -145,6 +140,71 @@ In karma.conf.js
 ```
 $ npm install --save-dev mocha sinon chai karma-mocha karma-sinon karma-chai karma-phantomjs-launcher phantomjs-prebuilt jshint-stylish
 ```
+
+
+// Code Coverage via karma-coverage and karma-remap-istanbul
+Install karma-coverage as dev dependencies.
+In karma.conf.js, add 'coverage' and 'karma-remap-istanbul' to reporters array.
+And configure Istanbul reporter.
+```
+	...
+	reporters: ['progress', 'coverage', 'karma-remap-istanbul']
+
+    // setup instanbul
+    remapIstanbulReporter: {
+        src: 'coverage/coverage.info',
+        reports: {
+          lcovonly: 'coverage.lcov.info',
+          html: 'coverage/html',
+          'text-summary': null
+        },
+        timeoutNotCreated: 5000,
+        timeoutNoMoreFiles: 1000
+    },
+    // write coverage.info file
+    coverageReporter: {
+        type: 'lcovonly',
+        subdir: '.',
+        dir: 'coverage/',
+        file: 'coverage.info'
+    },
+	...
+```
+View coverage page from coverage > html > index.html
+
+
+In gulpfile, add preprocessor
+	at top of test task, add:
+	```
+		var preprocessors = {};
+		preprocessors[bundle] = [ 'coverage' ];
+	```
+	add preprossors key-value pair in new Karma instance
+	```
+	...
+		new karma.Server({
+			configFile: __dirname + '/karma.conf.js',
+			files: files,
+			preprocessors: preprocessors, // add
+			singleRun: true
+		}, function() {
+			done();
+		}).start();
+	...
+	```
+** This cr4eats an coverage directory with coverage stats!
+
+Setup Prod Environments
+Minify if prod
+```
+$ gulp --prod
+```
+
+Do not minify or build sourcemaps if not prod
+```
+$ gulp
+```
+
 
 
 

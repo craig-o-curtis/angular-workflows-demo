@@ -18,15 +18,15 @@
 		'node_modules/bootstrap/dist/js/bootstrap.min.js'
 	];
 
-	var srcScripts = ['js/**/*.js', '!js/spec/*.js'];
-	
 	var specs = 'js/spec/*.js';
 	var bundle = 'dist/js/**/*.js';
+
+	var srcScripts = ['js/**/*.js', '!js/spec/*.js'];
 
 	gulp.task('scripts', function() {
 		gulp.src(srcScripts)
 			.pipe($.ngAnnotate()) // auto adds $inject into angular files
-			.pipe(!prod ? $.sourcemaps.init() : $.util.noop()) // looks at original js structure
+			.pipe(!prod ? $.sourcemaps.init() : $.util.noop()) // looks at original js structure OR does NO Operation and passes files straight through
 			.pipe($.babel({
 				presets: ['es2015']
 			}))
@@ -44,7 +44,7 @@
 			.pipe(prod ? $.jshint.reporter('fail') : $.util.noop());
 	});
 
-	gulp.task('test', ['scripts', 'validate'], function(done) {
+	gulp.task('test', ['scripts', 'validate'], function(done) { // required done callback to force done callback action
 		var preprocessors = {};
 		preprocessors[bundle] = [ 'coverage' ];
 
@@ -55,6 +55,7 @@
 		new karma.Server({
 			configFile: __dirname + '/karma.conf.js',
 			files: files,
+			preprocessors: preprocessors,
 			singleRun: true
 		}, function() {
 			done(); // cb trick pass as var
