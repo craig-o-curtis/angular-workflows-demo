@@ -1,11 +1,12 @@
 // From Pluralsight Advanced Angular Workflows
+** This is AngularJS 1.5.8 **
 
-Goals 
+Goals  - Gulp to Automate:
 
-1. ES6
-2. Gulp
-3. Validate code with JSHint
-4. Unit testing with karma & Mocha, Chai for insertion framework, Sinon for mocking
+1. Babel - ES6 in AngularJS
+2. Validate code with JSHint
+3. Unit testing with karma & Mocha, Chai for insertion framework, Sinon for mocking
+4. Specifying Environment processes
 
 // Gulp will:
 * bundle, minify, sourcemap, transpile es6 with babel, watch js files
