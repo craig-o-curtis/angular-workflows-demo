@@ -14,6 +14,7 @@ Goals
 // Setup
 ```
 $ npm init -y
+$ npm install --save -dev jquery@3.1.0 angular@1.5.8 angular-route@1.5.8 angular-mocks@1.5.8 // fronteend dependencies
 $ npm install --save-dev gulp
 $ npm install --save-dev gulp-load-plugins gulp-concat gulp-ugflify gulp-ngAnnotate 
 $ npm install --save-dev gulp-babel babel-preset-es2015gulp-sourcemaps

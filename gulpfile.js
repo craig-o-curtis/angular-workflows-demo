@@ -8,6 +8,15 @@
 
 	var srcScripts = ['js/**/*.js'];
 
+	// specify here, then npm --save install same versions as in index.html / 
+	var karamFiles = [
+		'node_modules/jquery/dist/jquery.min.js',
+		'node_modules/angular/angular.js',
+		'node_modules/angular-route/angular-route.js',
+		'node_modules/angular-mocks/angular-mocks.js',
+		'node_modules/bootstrap/dist/js/bootstrap.min.js'
+	];
+
 	gulp.task('scripts', function() {
 		gulp.src(srcScripts)
 			.pipe($.babel({
@@ -21,11 +30,22 @@
 			.pipe(gulp.dest('dist/js')); // spit out to dist/js
 	});
 
-	
+	gulp.task('validate', function() {
+
+	});
+
+	gulp.task('test', function() {
+		// run karma from within gulp
+		new karma.Server({
+			configFile: __dirname + '/karma.conf.js',
+			singleRun: true
+		}, function() {
+			done();
+		}).start();
+	});
 
 
-
-	gulp.task('default', ['scripts'], function() {
+	gulp.task('default', ['scripts', 'validate'], function() {
 		// runs scripts task
 		gulp.watch(srcScripts, ['scripts']);
 	});
