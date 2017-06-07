@@ -59,6 +59,35 @@ Should magically output:
 	"strict":true,
 	"predef": ["angular", "crmContactId", "console", "process", "modules", "require"]
 }
+
+Slightly modify adding the commented parts:
+```
+{
+	"curly": true,
+	"eqeqeq": true,
+	"esversion": 6,
+	"maxcomplexity":5,
+	"maxdepth":3,
+	"strict":true,
+	"validthis": true, // add
+	"predef": [
+		"angular",
+		"crmContactId",
+		"console",
+		"process",
+		"modules", // add
+		"require", // add
+		"describe", // add
+		"module", // add
+		"inject", // add
+		"beforeEach", // add
+		"sinon", // add
+		"it" // add
+	]
+}
+```
+
+
 ```
 
 // Setup Karma, Mocha, Chai, and Sinon

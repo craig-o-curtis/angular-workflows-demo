@@ -1,4 +1,4 @@
-// (function(){
+(function(){
 'use strict';
 
 describe('Category Controller', function() {
@@ -12,8 +12,8 @@ describe('Category Controller', function() {
             categoryResource = {};
 
             categoryResource.getCategories = function getCategories() {
-                return $q(function(resolve, reject) {
-                    resolve( [1,2,3,4] );
+                return $q(function(fulfill, reject) {
+                    fulfill([1, 2, 3, 4]);
                 });
             };
             sinon.spy(categoryResource, 'getCategories');
@@ -29,11 +29,9 @@ describe('Category Controller', function() {
   
     it('should get categories from a resource', function() {
         categoryResource.getCategories.called.should.equal(true);
-        $timeout.flush();
-        $controller.categories.length.should.equal(4)
+        $timeout.flush(); // causes error - 'No deferred tasks to be flushed'
+        $controller.categories.length.should.equal(43);
     });
 });
 
-
-
-// }());
+}());

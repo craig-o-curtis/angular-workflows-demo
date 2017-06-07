@@ -20,7 +20,7 @@
 
 	var srcScripts = ['js/**/*.js', '!js/spec/*.js'];
 	
-	var specs = 'spec/**/*.spec.js';
+	var specs = 'js/spec/*.js';
 	var bundle = 'dist/js/**/*.js';
 
 	gulp.task('scripts', function() {
@@ -41,7 +41,7 @@
 		gulp.src(srcScripts)
 			.pipe($.jshint())
 			.pipe($.jshint.reporter(stylish))
-			.pipe(prod ? $.jshint.reporter('fail') : $.util.noop())
+			.pipe(prod ? $.jshint.reporter('fail') : $.util.noop());
 	});
 
 	gulp.task('test', ['scripts', 'validate'], function(done) {

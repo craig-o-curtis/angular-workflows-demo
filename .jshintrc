@@ -6,5 +6,18 @@
 	"maxdepth":3,
 	"strict":true,
 	"validthis": true, // Tolerate using this in a non-constructor 
-	"predef": ["angular", "crmContactId", "console", "process", "modules", "require"]
+	"predef": [
+		"angular",
+		"crmContactId",
+		"console",
+		"process",
+		"modules",
+		"require",
+		"describe",
+		"module",
+		"inject",
+		"beforeEach",
+		"sinon",
+		"it"
+	]
 }
