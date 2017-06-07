@@ -1,5 +1,6 @@
 (function(){
 	'use strict';
+	
 	const app = angular.module('todo');
 	
 	function todoCtrl(taskResource, categoryResource){
@@ -19,11 +20,11 @@
 			};
 			
 			ctrl.tasks.push(task);
-		
+
 			ctrl.newTaskName = '';
 		};
 	}
 	
 	app.controller('todoCtrl', todoCtrl);
 	
-}());
+// }());
